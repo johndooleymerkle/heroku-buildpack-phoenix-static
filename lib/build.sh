@@ -25,9 +25,10 @@ download_node() {
 
   if [ ! -f ${cached_node} ]; then
     echo "Resolving node version $node_version..."
-    if ! read number url < <(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt"); then
-      fail_bin_install node $node_version;
-    fi
+    # if ! read number url < <(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt"); then
+    #   fail_bin_install node $node_version;
+    # fi
+    url = "https://nodejs.org/dist/v12.4.0/node-v12.4.0-linux-x64.tar.gz"
 
     echo "Downloading and installing node $number..."
     local code=$(curl "$url" -L --silent --fail --retry 5 --retry-max-time 15 -o ${cached_node} --write-out "%{http_code}")
